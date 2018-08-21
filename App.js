@@ -9,6 +9,7 @@ import DeckListView from './components/DeckListView'
 import NewDeckView from './components/NewDeckView'
 import Splash from './components/Splash'
 import { createBottomTabNavigator } from 'react-navigation'
+import { blue, black, darkgrey, lightgrey } from "./utils/colors";
 
 
 
@@ -84,6 +85,20 @@ export default class App extends React.Component {
 
 const Navigator = createBottomTabNavigator({
   Decks: DeckListView,
-  NewDeck: NewDeckView
+  NewDeck: NewDeckView,
+},
+{
+  tabBarOptions: {
+    activeTintColor: blue,
+    inactiveTintColor: lightgrey,
+    labelStyle: {
+      fontSize: 20,
+    },
+    style: {
+      backgroundColor: darkgrey,
+      borderRightWidth: 1,
+      borderRightColor: black,
+    },
+  },
 });
 
