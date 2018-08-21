@@ -1,12 +1,13 @@
 import React from 'react'
-import { StyleSheet, View, Image, StatusBar, Text } from 'react-native'
-import { black } from './utils/colors'
+import { StyleSheet, View, Image, StatusBar } from 'react-native'
 import { setLocalNotification } from './utils/helpers'
 //import { setDecks, getDecks, getDeck } from './utils/api'
 import { decks } from './utils/_DATA'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import DeckListView from './components/DeckListView'
+import NewDeckView from './components/NewDeckView'
+import Splash from './components/Splash'
 import { createBottomTabNavigator } from 'react-navigation'
 
 
@@ -67,33 +68,22 @@ export default class App extends React.Component {
   render() {
 
     if(this.state.loaded === false) {
-      return <View style={styles.container}>
-          <StatusBar barStyle="light-content" />
-        <Image source={require("./img/udaci-cards-logo-200.png")} style={{ width: 200, height: 200 }} />
-        </View>;
+      return <Splash />;
     } 
 
 
     return <Provider store={store}>
-      <View style={styles.container}>
-        <StatusBar
-          barStyle="light-content"
-        />
-        <DeckListView />
-      </View>
+        <Navigator />
     </Provider> 
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: black,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    width: 200,
-    height: 200
-  }
+
+
+
+
+const Navigator = createBottomTabNavigator({
+  Decks: DeckListView,
+  NewDeck: NewDeckView
 });
+
