@@ -1,5 +1,22 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name" : "UdaciCards",
+    "description" : "The app will allow users to create different categories of flashcards called 'decks', add flashcards to those decks, then take quizzes on those decks.",
+    "slug" : "udaci-cards",
+    "sdkVersion": "27.0.0",
+    "privacy" : "public",
+    "orientation" : "portrait",
+    "primaryColor" : "#02b3e4",
+    "icon" : "./img/udaci-cards-logo-200.png",
+    "splash": {
+      "backgroundColor": "#1c262f",
+      "resizeMode": "contain",
+      "image": "./img/udaci-cards-logo-200.png"
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content"
+    }
+    
+
   }
 }
