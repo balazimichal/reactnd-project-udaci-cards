@@ -6,10 +6,13 @@ import { getDeck } from "../actions/decks";
 
 class IndividualDeckView extends Component {
 
-    componentDidMount() {
-
+    handleAddCard = () => {
+        this.props.navigation.navigate('NewQuestionView')
     }
 
+    handleStartQuiz = () => {
+        console.log('start quiz')
+    }
 
 
   render() {
@@ -24,10 +27,10 @@ class IndividualDeckView extends Component {
             <ScrollView style={styles.view}>
                 <Text style={styles.title}>{deck.title}</Text>
                 <Text style={styles.subtitle}>{deck.questions.length} card{deck.questions.length !== 1 && 's'}</Text>
-                <TouchableHighlight style={styles.button} onPress={this.onDeckSubmit} underlayColor={orange}>
+                <TouchableHighlight style={styles.button} onPress={this.handleAddCard} underlayColor={orange}>
                     <Text style={styles.buttonTitle}>ADD CARD</Text>
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.button} onPress={this.onDeckSubmit} underlayColor={orange}>
+                <TouchableHighlight style={styles.button} onPress={this.handleStartQuiz} underlayColor={orange}>
                     <Text style={styles.buttonTitle}>START QUIZ</Text>
                 </TouchableHighlight>
             </ScrollView>

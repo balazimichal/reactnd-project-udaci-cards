@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import DeckListView from './components/DeckListView'
 import NewDeckView from './components/NewDeckView'
 import IndividualDeckView from './components/IndividualDeckView'
+import NewQuestionView from './components/NewQuestionView'
 import Splash from './components/Splash'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import { blue, specialgrey, darkgrey, lightgrey } from './utils/colors'
@@ -135,6 +136,16 @@ const MainNavigator = createStackNavigator({
     screen: IndividualDeckView,
     navigationOptions: {
       title: 'Back to Decks',
+      headerTintColor: blue,
+      headerStyle: {
+        backgroundColor: darkgrey
+      }
+    }
+  },
+  NewQuestionView: {
+    screen: NewQuestionView,
+    navigationOptions: {
+      title: 'Back to Deck',
       headerTintColor: blue,
       headerStyle: {
         backgroundColor: darkgrey
