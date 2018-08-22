@@ -24,3 +24,6 @@ To run this project follow this steps:
 ### Technical requirements
 - Code adheres to udacity HTML, CSS, JavaScript, and Git style guidelines.
 - Project must pass following rubic: https://review.udacity.com/#!/rubrics/1021/view
+
+## Testing
+Both iOS and Android have been tested and styles were slightly adjusted to represent better given platform.

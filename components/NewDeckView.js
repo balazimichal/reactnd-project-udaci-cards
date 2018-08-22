@@ -50,7 +50,7 @@ class NewDeckView extends Component {
                     placeholderTextColor={lightgrey}
                 />
                 <TouchableHighlight style={styles.button} onPress={this.onDeckSubmit} underlayColor={orange}>
-                    <Text style={styles.buttonTitle}>SUBMIT</Text>
+                    <Text style={styles.buttonTitle}>CREATE DECK</Text>
                 </TouchableHighlight>
                 {this.state.error !== '' && <Text style={styles.error}><MaterialIcons style={styles.icon} name="error" size={30} color={white} /> {this.state.error}</Text>}
             </ScrollView>
