@@ -1,19 +1,35 @@
 import React, { Component } from 'react'
 import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, TextInput, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
-import { black, darkgrey, blue, lightgrey, white, orange } from '../utils/colors'
+import { black, red, blue, lightgrey, white, orange } from '../utils/colors'
 import { addDeck } from '../actions/decks'
+import { MaterialIcons } from "@expo/vector-icons";
 
 class NewDeckView extends Component {
 
     state = {
-        text: ''
+        text: '',
+        error: ''
     }
 
     onDeckSubmit = () => {
+        const match = this.props.state.filter((deck) => {
+            return deck.title === this.state.text
+        })
+        if (this.state.text !== '' && match.length === 0) {
         this.props.dispatch(addDeck(this.state.text))
         this.props.navigation.navigate('Decks')
         this.setState({ text: '' });
+        } else {
+            let errorMsg = ''
+            if (this.state.text !== '') {
+                errorMsg = 'Title can not be empty'
+            }
+            if (match.length !== 0) {
+                errorMsg = 'There is already such title in your deck'
+            }
+            this.setState({ error: errorMsg });
+        }
     }
 
   render() {
@@ -36,6 +52,7 @@ class NewDeckView extends Component {
                 <TouchableHighlight style={styles.button} onPress={this.onDeckSubmit} underlayColor={orange}>
                     <Text style={styles.buttonTitle}>SUBMIT</Text>
                 </TouchableHighlight>
+                {this.state.error !== '' && <Text style={styles.error}><MaterialIcons style={styles.icon} name="error" size={30} color={white} /> {this.state.error}</Text>}
             </ScrollView>
         </View>
     )
@@ -83,6 +100,7 @@ const styles = StyleSheet.create({
         backgroundColor: blue,
         height:50,
         borderRadius: Platform.OS === 'ios' ? 10 : 2,
+        marginBottom: 30
     },
     buttonTitle: {
         textAlign: 'center',
@@ -90,6 +108,19 @@ const styles = StyleSheet.create({
         fontSize: 20,
         lineHeight: 50,
         fontWeight: 'bold'
+    },
+    error: {
+        backgroundColor: red,
+        color: white,
+        fontSize: 14,
+        textAlign: 'center',
+        height: 50,
+        lineHeight: 50,
+
+    },
+    icon: {
+        lineHeight: 50,
+        marginTop: 5,
     }
 
 });
