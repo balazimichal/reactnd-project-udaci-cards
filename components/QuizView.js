@@ -1,9 +1,27 @@
 import React, { Component } from 'react'
-import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, TouchableHighlight } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, TouchableHighlight, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { black, blue, lightgrey, white, orange, red, green } from '../utils/colors'
 
 class QuizView extends Component {
+
+    state = {
+        score: 0
+    }
+
+
+    handleCorrectAnswer = () => {
+        console.log('correct')
+    }
+
+    handleIncorrectAnswer = () => {
+        console.log('incorrect')
+    }
+
+    handleShowAnswer = () => {
+        console.log('show answer')
+    }
+
   render() {
     return (
         <View style={styles.container}>
@@ -11,14 +29,22 @@ class QuizView extends Component {
                 barStyle="light-content"
             />
             <ScrollView style={styles.view}>
+                <Text style={styles.helper}>1/2</Text>
+                <Text style={styles.question}>Question?</Text>
+                <Text style={styles.answer}>Answer</Text>
+                <View style={styles.buttonShowAnswer}>
+                    <Button
+                        onPress={this.handleShowAnswer}
+                        title="Show Answer"
+                        color={lightgrey}
+                    />
+                </View>
 
-                <Text style={styles.title}>Quiz View</Text>
-                <Text style={styles.subtitle}>Answer</Text>
 
-                <TouchableHighlight style={styles.buttonOK} onPress={this.handleAddCard} underlayColor={orange}>
+                <TouchableHighlight style={styles.buttonOK} onPress={this.handleCorrectAnswer} underlayColor={orange}>
                     <Text style={styles.buttonTitle}>CORRECT</Text>
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.buttonError} onPress={this.handleStartQuiz} underlayColor={orange}>
+                <TouchableHighlight style={styles.buttonError} onPress={this.handleIncorrectAnswer} underlayColor={orange}>
                     <Text style={styles.buttonTitle}>INCORRECT</Text>
                 </TouchableHighlight>
             </ScrollView>
@@ -46,16 +72,21 @@ const styles = StyleSheet.create({
   view: {
     padding: 30,
     paddingTop: 60,
-    width: width - 60
+    width: width
   },
-  title: {
-    fontSize: 40,
+  question: {
+    fontSize: 30,
     color: blue,
     textAlign: "center",
-    marginBottom: 80
+    marginBottom: 60
   },
-  subtitle: {
-    fontSize: 20,
+    answer: {
+        fontSize: 30,
+        color: lightgrey,
+        textAlign: "center",
+        marginBottom: 60
+    },
+    buttonShowAnswer: {
     color: lightgrey,
     textAlign: "center",
     marginBottom: 40
@@ -78,6 +109,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 50,
     fontWeight: "bold"
+  },
+  helper: {
+     color: lightgrey,
+     fontSize: 16,
+     marginBottom: 40, 
   }
 });
 
