@@ -1,5 +1,6 @@
 import React from 'react'
 import { setLocalNotification } from './utils/helpers'
+import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 //import { setDecks, getDecks, getDeck } from './utils/api'
 import { decks } from './utils/_DATA'
 import { createStore } from 'redux'
@@ -9,7 +10,7 @@ import NewDeckView from './components/NewDeckView'
 import IndividualDeckView from './components/IndividualDeckView'
 import Splash from './components/Splash'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
-import { blue, black, darkgrey, lightgrey } from './utils/colors'
+import { blue, specialgrey, darkgrey, lightgrey } from './utils/colors'
 import { getDecks } from './actions/decks'
 
 
@@ -83,24 +84,44 @@ export default class App extends React.Component {
 
 
 
-const Tabs = createBottomTabNavigator({
-  Decks: DeckListView,
-  NewDeck: NewDeckView,
-},
-{
-  tabBarOptions: {
-    activeTintColor: blue,
-    inactiveTintColor: lightgrey,
-    labelStyle: {
-      fontSize: 20,
+const Tabs = createBottomTabNavigator(
+  {
+    Decks: {
+      screen: DeckListView,
+      navigationOptions: {
+        tabBarLabel: "Decks",
+        tabBarIcon: ({ tintColor }) => (
+          <MaterialCommunityIcons name="cards" size={30} color={tintColor} />
+        )
+      }
     },
-    style: {
-      backgroundColor: darkgrey,
-      borderTopWidth: 1,
-      borderTopColor: '#000000',
-    },
+    NewDeck: {
+      screen: NewDeckView,
+      navigationOptions: {
+        tabBarLabel: "Add deck",
+        tabBarIcon: ({ tintColor }) => (
+          <Ionicons name="md-add" size={30} color={tintColor} />
+        )
+      }
+    }
   },
-});
+  {
+    tabBarOptions: {
+      activeTintColor: blue,
+      inactiveTintColor: lightgrey,
+      labelStyle: {
+        fontSize: 12,
+      },
+      style: {
+        backgroundColor: darkgrey,
+        borderTopWidth: 1,
+        borderTopColor: specialgrey,
+        paddingTop:10,
+        height:60
+      }
+    }
+  }
+);
 
 
 const MainNavigator = createStackNavigator({
@@ -113,6 +134,7 @@ const MainNavigator = createStackNavigator({
   IndividualDeckView: {
     screen: IndividualDeckView,
     navigationOptions: {
+      title: 'Back to Decks',
       headerTintColor: blue,
       headerStyle: {
         backgroundColor: darkgrey
