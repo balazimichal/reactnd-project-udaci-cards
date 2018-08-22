@@ -6,10 +6,11 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import DeckListView from './components/DeckListView'
 import NewDeckView from './components/NewDeckView'
+import IndividualDeckView from './components/IndividualDeckView'
 import Splash from './components/Splash'
-import { createBottomTabNavigator } from 'react-navigation'
-import { blue, black, darkgrey, lightgrey } from "./utils/colors";
-import { setDecks } from './actions/decks'
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
+import { blue, black, darkgrey, lightgrey } from './utils/colors'
+import { getDecks } from './actions/decks'
 
 
 
@@ -20,7 +21,7 @@ const store = createStore((state = [], action) => {
   switch (action.type) {
     case 'ADD_DECK':
       return state = state.concat({ title: action.title, questions: [] })
-    case 'SET_DECKS':
+    case 'GET_DECKS':
       return state = decks
     default:
       return state
@@ -48,7 +49,7 @@ export default class App extends React.Component {
     console.log("%c UdaciCards", "font-size:14px;color:#02b3e4");
     setLocalNotification()
 
-    store.dispatch(setDecks())
+    store.dispatch(getDecks())
 
     setTimeout(function () {
       this.setState({ loaded: true });
@@ -73,7 +74,7 @@ export default class App extends React.Component {
 
 
     return <Provider store={store}>
-        <Navigator />
+        <MainNavigator />
     </Provider> 
   }
 }
@@ -82,7 +83,7 @@ export default class App extends React.Component {
 
 
 
-const Navigator = createBottomTabNavigator({
+const Tabs = createBottomTabNavigator({
   Decks: DeckListView,
   NewDeck: NewDeckView,
 },
@@ -95,9 +96,28 @@ const Navigator = createBottomTabNavigator({
     },
     style: {
       backgroundColor: darkgrey,
-      borderRightWidth: 1,
-      borderRightColor: black,
+      borderTopWidth: 1,
+      borderTopColor: '#000000',
     },
   },
+});
+
+
+const MainNavigator = createStackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null
+    }
+  },
+  IndividualDeckView: {
+    screen: IndividualDeckView,
+    navigationOptions: {
+      headerTintColor: blue,
+      headerStyle: {
+        backgroundColor: darkgrey
+      }
+    }
+  }
 });
 

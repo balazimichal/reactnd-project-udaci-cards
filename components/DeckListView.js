@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { black, darkgrey, blue, lightgrey } from '../utils/colors'
 
@@ -13,10 +13,12 @@ class DeckListView extends Component {
             />
             <ScrollView style={styles.view}>
                 {state.map((deck) => (
-                    <View key={deck.title} style={styles.deck}>
-                        <Text style={styles.title}>{deck.title}</Text>
-                        <Text style={styles.subtitle}>{deck.questions.length} card{deck.questions.length !== 1 && 's'}</Text>
-                    </View>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('IndividualDeckView', { deck: deck })} key={deck.title}>
+                        <View style={styles.deck}>
+                            <Text style={styles.title}>{deck.title}</Text>
+                            <Text style={styles.subtitle}>{deck.questions.length} card{deck.questions.length !== 1 && 's'}</Text>
+                        </View>
+                    </TouchableOpacity>
                 ))}
             </ScrollView>
         </View>

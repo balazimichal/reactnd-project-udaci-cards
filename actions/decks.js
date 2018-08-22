@@ -1,5 +1,5 @@
-export const setDecks = () => ({
-    type: 'SET_DECKS'
+export const getDecks = () => ({
+    type: 'GET_DECKS'
 })
 
 export const addDeck = (title) => ({
