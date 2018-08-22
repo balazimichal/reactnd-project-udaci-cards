@@ -13,7 +13,7 @@ class DeckListView extends Component {
             />
             <ScrollView style={styles.view}>
                 {state.map((deck) => (
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('IndividualDeckView', { deck: deck })} key={deck.title}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('IndividualDeckView', { title: deck.title })} key={deck.title}>
                         <View style={styles.deck}>
                             <Text style={styles.title}>{deck.title}</Text>
                             <Text style={styles.subtitle}>{deck.questions.length} card{deck.questions.length !== 1 && 's'}</Text>

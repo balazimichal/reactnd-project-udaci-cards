@@ -8,7 +8,7 @@ class IndividualDeckView extends Component {
 
     handleAddCard = () => {
         this.props.navigation.navigate("NewQuestionView", {
-          deck: this.props.navigation.state.params.deck
+            title: this.props.navigation.state.params.title
         });
     }
 
@@ -17,26 +17,36 @@ class IndividualDeckView extends Component {
     }
 
 
-  render() {
+    render() {
 
-      const { deck } = this.props.navigation.state.params
+        const { title } = this.props.navigation.state.params
+        const deck = this.props.state.filter((deck) => { return deck.title === title })
+        console.log(deck)
+        return (
+            <View style={styles.container}>
+                <StatusBar
+                    barStyle="light-content"
+                />
+                <ScrollView style={styles.view}>
+                    {deck.map((item) => (
+                        <View>
+                            <Text style={styles.title}>{item.title}</Text>
+                            <Text style={styles.subtitle}>{item.questions.length} card{item.questions.length !== 1 && 's'}</Text>
+                        </View>
 
-    return (
-        <View style={styles.container}>
-            <StatusBar
-                barStyle="light-content"
-            />
-            <ScrollView style={styles.view}>
-                <Text style={styles.title}>{deck.title}</Text>
-                <Text style={styles.subtitle}>{deck.questions.length} card{deck.questions.length !== 1 && 's'}</Text>
-                <TouchableHighlight style={styles.button} onPress={this.handleAddCard} underlayColor={orange}>
-                    <Text style={styles.buttonTitle}>ADD CARD</Text>
-                </TouchableHighlight>
-                <TouchableHighlight style={styles.button} onPress={this.handleStartQuiz} underlayColor={orange}>
-                    <Text style={styles.buttonTitle}>START QUIZ</Text>
-                </TouchableHighlight>
-            </ScrollView>
-        </View>
+                    ))}
+                    
+
+
+
+                    <TouchableHighlight style={styles.button} onPress={this.handleAddCard} underlayColor={orange}>
+                        <Text style={styles.buttonTitle}>ADD CARD</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight style={styles.button} onPress={this.handleStartQuiz} underlayColor={orange}>
+                        <Text style={styles.buttonTitle}>START QUIZ</Text>
+                    </TouchableHighlight>
+                </ScrollView>
+            </View>
         )
     }
 }
@@ -44,9 +54,8 @@ class IndividualDeckView extends Component {
 
 
 const mapStateToProps = (state) => {
-
     return {
-        state
+        state,
     }
 }
 
@@ -91,3 +100,5 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     }
 });
+
+

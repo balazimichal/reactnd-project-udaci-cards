@@ -17,7 +17,7 @@ class NewQuestionView extends Component {
         if (this.state.question !== '' && this.state.answer !== '') {
 
             const questions = {question: this.state.question, answer: this.state.answer}
-            this.props.dispatch(addQuestion(this.props.navigation.state.params.deck.title, questions));
+            this.props.dispatch(addQuestion(this.props.navigation.state.params.title, questions));
             //console.log(this.props.navigation.state.params.deck.title, questions);
             this.setState({ question: '', answer: '' });
             this.props.navigation.navigate('IndividualDeckView')
