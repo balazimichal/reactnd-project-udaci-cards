@@ -9,6 +9,7 @@ import DeckListView from './components/DeckListView'
 import NewDeckView from './components/NewDeckView'
 import IndividualDeckView from './components/IndividualDeckView'
 import NewQuestionView from './components/NewQuestionView'
+import QuizView from './components/QuizView'
 import Splash from './components/Splash'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import { blue, specialgrey, darkgrey, lightgrey } from './utils/colors'
@@ -148,6 +149,16 @@ const MainNavigator = createStackNavigator({
     screen: NewQuestionView,
     navigationOptions: {
       title: 'New Question',
+      headerTintColor: blue,
+      headerStyle: {
+        backgroundColor: darkgrey
+      }
+    }
+  },
+  QuizView: {
+    screen: QuizView,
+    navigationOptions: {
+      title: 'Quiz',
       headerTintColor: blue,
       headerStyle: {
         backgroundColor: darkgrey

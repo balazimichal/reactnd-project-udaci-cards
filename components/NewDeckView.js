@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         lineHeight: 50,
-        marginTop: 5,
+        bottom: -20,
     }
 
 });

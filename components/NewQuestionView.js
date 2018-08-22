@@ -124,6 +124,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     lineHeight: 50,
-    marginTop: 5
+    marginTop: 20,
   }
 });
