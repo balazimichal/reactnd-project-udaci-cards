@@ -32,6 +32,15 @@ class IndividualDeckView extends Component {
                         <View key={item.title}>
                             <Text style={styles.title}>{item.title}</Text>
                             <Text style={styles.subtitle}>{item.questions.length} card{item.questions.length !== 1 && 's'}</Text>
+                        
+                        <TouchableHighlight style={styles.button} onPress={this.handleAddCard} underlayColor={orange}>
+                            <Text style={styles.buttonTitle}>ADD CARD</Text>
+                        </TouchableHighlight>
+                        { item.questions.length !== 0 &&
+                        <TouchableHighlight style={styles.button} onPress={this.handleStartQuiz} underlayColor={orange}>
+                            <Text style={styles.buttonTitle}>START QUIZ</Text>
+                        </TouchableHighlight>
+                        }
                         </View>
 
                     ))}
@@ -39,12 +48,7 @@ class IndividualDeckView extends Component {
 
 
 
-                    <TouchableHighlight style={styles.button} onPress={this.handleAddCard} underlayColor={orange}>
-                        <Text style={styles.buttonTitle}>ADD CARD</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight style={styles.button} onPress={this.handleStartQuiz} underlayColor={orange}>
-                        <Text style={styles.buttonTitle}>START QUIZ</Text>
-                    </TouchableHighlight>
+
                 </ScrollView>
             </View>
         )

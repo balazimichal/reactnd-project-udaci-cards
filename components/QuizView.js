@@ -5,33 +5,133 @@ import { black, blue, lightgrey, white, orange, red, green } from '../utils/colo
 
 class QuizView extends Component {
 
+
+
     state = {
-        score: 0
+        score: 0,
+        questionsIndex: 0,
+        totalQuestions: 0,
+        questions: '',
+        showAnswer: false,
+        showScore: false,
     }
 
 
     handleCorrectAnswer = () => {
-        console.log('correct')
+        if (this.state.questionsIndex +1 === this.state.totalQuestions) {
+            this.setState((prevState) => ({
+                score: prevState.score + 1,
+                showScore: true
+            }))
+
+        } else {
+            this.setState((prevState) => ({
+                score: prevState.score + 1,
+                questionsIndex: prevState.questionsIndex + 1,
+                question: prevState.questions[0][prevState.questionsIndex + 1].question,
+                answer: prevState.questions[0][prevState.questionsIndex + 1].answer,
+                showAnswer: false
+            }))
+        }
+
     }
 
     handleIncorrectAnswer = () => {
-        console.log('incorrect')
+        if (this.state.questionsIndex + 1 === this.state.totalQuestions) {
+            this.setState({showScore: true})
+        } else {
+            this.setState((prevState) => ({
+                questionsIndex: prevState.questionsIndex + 1,
+                question: prevState.questions[0][prevState.questionsIndex + 1].question,
+                answer: prevState.questions[0][prevState.questionsIndex + 1].answer,
+                showAnswer: false
+            }))
+        }
     }
 
     handleShowAnswer = () => {
-        console.log('show answer')
+        this.setState({
+            showAnswer: true
+        })
+    }
+
+    handleBackToDeck = () => {
+        this.props.navigation.navigate('IndividualDeckView')
+    }
+
+    handleStartQuiz = () => {
+        const deck = this.props.state.filter((deck) => { return deck.title === this.props.navigation.state.params.title })
+
+        const questions = deck.map((question) => {
+            return question.questions
+        })
+        this.setState({
+            score: 0,
+            questionsIndex: 0,
+            totalQuestions: parseInt(questions[0].length),
+            questions: questions,
+            question: questions[0][0].question,
+            answer: questions[0][0].answer,
+            showAnswer: false,
+            showScore: false,
+        }) 
+    }
+
+    componentDidMount() {
+
+        const deck = this.props.state.filter((deck) => { return deck.title === this.props.navigation.state.params.title })
+
+        const questions = deck.map((question) => {
+            return question.questions
+        })
+
+        this.setState({
+            totalQuestions: parseInt(questions[0].length),
+          questions: questions,
+          question: questions[0][this.state.questionsIndex].question,
+          answer: questions[0][this.state.questionsIndex].answer
+        });
+
     }
 
   render() {
+
+      if (this.state.showScore === true) {
+          return (
+              <View style={styles.container}>
+                  <StatusBar
+                      barStyle="light-content"
+                  />
+                  <ScrollView style={styles.view}>
+                      <Text style={styles.question}>Your score is: {this.state.score}/{this.state.totalQuestions}</Text>
+
+                      <TouchableHighlight style={styles.button} onPress={this.handleStartQuiz} underlayColor={orange}>
+                          <Text style={styles.buttonTitle}>START QUIZ</Text>
+                      </TouchableHighlight>
+                    <TouchableHighlight style={styles.button} onPress={this.handleBackToDeck} underlayColor={orange}>
+                        <Text style={styles.buttonTitle}>BACK TO DECK</Text>
+                    </TouchableHighlight>
+
+
+                  </ScrollView>
+              </View>
+          )
+      }
+
+
     return (
         <View style={styles.container}>
             <StatusBar
                 barStyle="light-content"
             />
             <ScrollView style={styles.view}>
-                <Text style={styles.helper}>1/2</Text>
-                <Text style={styles.question}>Question?</Text>
-                <Text style={styles.answer}>Answer</Text>
+                <Text style={styles.helper}>total: {this.state.questionsIndex + 1}/{this.state.totalQuestions}</Text>
+                <Text>{this.state.deck}</Text>
+                <Text style={styles.question}>{this.state.question}</Text>
+                {this.state.showAnswer === true && 
+                    <Text style={styles.answer}>{this.state.answer}</Text>
+                }
+
                 <View style={styles.buttonShowAnswer}>
                     <Button
                         onPress={this.handleShowAnswer}
@@ -87,8 +187,6 @@ const styles = StyleSheet.create({
         marginBottom: 60
     },
     buttonShowAnswer: {
-    color: lightgrey,
-    textAlign: "center",
     marginBottom: 40
   },
   buttonError: {
@@ -102,6 +200,12 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: Platform.OS === "ios" ? 10 : 2,
         marginBottom: 20
+    },
+    button: {
+        backgroundColor: blue,
+        height: 50,
+        borderRadius: Platform.OS === 'ios' ? 10 : 2,
+        marginBottom: 20,
     },
   buttonTitle: {
     textAlign: "center",
