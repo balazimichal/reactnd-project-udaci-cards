@@ -21,7 +21,6 @@ class IndividualDeckView extends Component {
 
         const { title } = this.props.navigation.state.params
         const deck = this.props.state.filter((deck) => { return deck.title === title })
-        console.log(deck)
         return (
             <View style={styles.container}>
                 <StatusBar
@@ -29,7 +28,7 @@ class IndividualDeckView extends Component {
                 />
                 <ScrollView style={styles.view}>
                     {deck.map((item) => (
-                        <View>
+                        <View key={item.title}>
                             <Text style={styles.title}>{item.title}</Text>
                             <Text style={styles.subtitle}>{item.questions.length} card{item.questions.length !== 1 && 's'}</Text>
                         </View>

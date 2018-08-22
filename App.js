@@ -137,7 +137,7 @@ const MainNavigator = createStackNavigator({
   IndividualDeckView: {
     screen: IndividualDeckView,
     navigationOptions: {
-      title: 'Back to Decks',
+      title: 'Deck',
       headerTintColor: blue,
       headerStyle: {
         backgroundColor: darkgrey
@@ -147,7 +147,7 @@ const MainNavigator = createStackNavigator({
   NewQuestionView: {
     screen: NewQuestionView,
     navigationOptions: {
-      title: 'Back to Deck',
+      title: 'New Question',
       headerTintColor: blue,
       headerStyle: {
         backgroundColor: darkgrey
