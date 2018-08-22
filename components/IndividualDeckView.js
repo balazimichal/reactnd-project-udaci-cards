@@ -7,7 +7,9 @@ import { getDeck } from "../actions/decks";
 class IndividualDeckView extends Component {
 
     handleAddCard = () => {
-        this.props.navigation.navigate('NewQuestionView')
+        this.props.navigation.navigate("NewQuestionView", {
+          deck: this.props.navigation.state.params.deck
+        });
     }
 
     handleStartQuiz = () => {

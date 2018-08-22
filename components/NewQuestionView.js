@@ -2,33 +2,29 @@ import React, { Component } from 'react'
 import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, TextInput, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
 import { black, red, blue, lightgrey, white, orange } from '../utils/colors'
-import { addDeck } from '../actions/decks'
+import { addQuestion } from '../actions/decks'
 import { MaterialIcons } from "@expo/vector-icons";
 
 class NewQuestionView extends Component {
 
     state = {
-        text: '',
+        question: '',
+        answer: '',
         error: ''
     }
 
-    onDeckSubmit = () => {
-        const match = this.props.state.filter((deck) => {
-            return deck.title === this.state.text
-        })
-        if (this.state.text !== '' && match.length === 0) {
-            this.props.dispatch(addDeck(this.state.text))
-            this.props.navigation.navigate('Decks')
-            this.setState({ text: '' });
+    handleQuestionSubmit = () => {
+        if (this.state.question !== '' && this.state.answer !== '') {
+
+            const questions = {question: this.state.question, answer: this.state.answer}
+            this.props.dispatch(addQuestion(this.props.navigation.state.params.deck.title, questions));
+            //console.log(this.props.navigation.state.params.deck.title, questions);
+            this.setState({ question: '', answer: '' });
+            this.props.navigation.navigate('IndividualDeckView')
         } else {
-            let errorMsg = ''
-            if (this.state.text !== '') {
-                errorMsg = 'Title can not be empty'
+            if (this.state.question === '' && this.state.answer === '') {
+                this.setState({ error: 'Question and Answer can not be empty' });
             }
-            if (match.length !== 0) {
-                errorMsg = 'There is already such title in your deck'
-            }
-            this.setState({ error: errorMsg });
         }
     }
 
@@ -39,11 +35,11 @@ class NewQuestionView extends Component {
                     barStyle="light-content"
                 />
                 <ScrollView style={styles.view}>
-                    <Text style={styles.subtitle}>Add new question</Text>
+                    <Text style={styles.title}>Add new question</Text>
                     <TextInput
                         style={styles.input}
-                        onChangeText={(text) => this.setState({ text })}
-                        value={this.state.text}
+                        onChangeText={(question) => this.setState({ question })}
+                        value={this.state.question}
                         maxLength={20}
                         autoFocus={true}
                         placeholder='Type your question'
@@ -51,14 +47,13 @@ class NewQuestionView extends Component {
                     />
                     <TextInput
                         style={styles.input}
-                        onChangeText={(text) => this.setState({ text })}
-                        value={this.state.text}
+                        onChangeText={(answer) => this.setState({ answer })}
+                        value={this.state.answer}
                         maxLength={20}
-                        autoFocus={true}
                         placeholder='Type your answer'
                         placeholderTextColor={lightgrey}
                     />
-                    <TouchableHighlight style={styles.button} onPress={this.onDeckSubmit} underlayColor={orange}>
+                    <TouchableHighlight style={styles.button} onPress={this.handleQuestionSubmit} underlayColor={orange}>
                         <Text style={styles.buttonTitle}>SUBMIT QUESTION</Text>
                     </TouchableHighlight>
                     {this.state.error !== '' && <Text style={styles.error}><MaterialIcons style={styles.icon} name="error" size={30} color={white} /> {this.state.error}</Text>}
@@ -92,11 +87,11 @@ const styles = StyleSheet.create({
     paddingTop: 60,
     width: width
   },
-  subtitle: {
-    fontSize: 20,
-    color: lightgrey,
+  title: {
+    fontSize: 40,
+    color: blue,
     textAlign: "center",
-    marginBottom: 40
+    marginBottom: 20
   },
   input: {
     height: 60,
