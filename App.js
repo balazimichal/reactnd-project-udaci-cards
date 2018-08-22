@@ -1,10 +1,8 @@
 import React from 'react'
-import { setLocalNotification } from './utils/helpers'
-import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 //import { setDecks, getDecks, getDeck } from './utils/api'
-import { decks } from './utils/_DATA'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import store from './redux/deck'
+import { getDecks } from './actions/decks';
 import DeckListView from './components/DeckListView'
 import NewDeckView from './components/NewDeckView'
 import IndividualDeckView from './components/IndividualDeckView'
@@ -13,30 +11,8 @@ import QuizView from './components/QuizView'
 import Splash from './components/Splash'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import { blue, specialgrey, darkgrey, lightgrey } from './utils/colors'
-import { getDecks } from './actions/decks'
-
-
-
-
-
-
-const store = createStore((state = [], action) => {
-  switch (action.type) {
-    case 'ADD_QUESTION':
-      return state.map((deck) => deck.title === action.title ? { ...deck, questions: deck.questions.concat(action.question) } : deck)
-    case 'ADD_DECK':
-      return state = [...state, { title: action.title, questions: [] }]
-    case 'GET_DECKS':
-      return state = decks
-    default:
-      return state
-  }
-})
-
-
-store.subscribe(() => {
-  console.log(store.getState())
-})
+import { setLocalNotification } from "./utils/helpers";
+import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 
 
 
