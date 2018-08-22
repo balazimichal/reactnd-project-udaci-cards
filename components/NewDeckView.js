@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, TextInput, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
 import { black, darkgrey, blue, lightgrey, white, orange } from '../utils/colors'
+import { addDeck } from '../actions/decks'
 
 class NewDeckView extends Component {
 
@@ -10,7 +11,8 @@ class NewDeckView extends Component {
     }
 
     onDeckSubmit = () => {
-        console.log('Submited :)')
+        this.props.dispatch(addDeck(this.state.text))
+        this.props.navigation.navigate('Decks')
     }
 
   render() {

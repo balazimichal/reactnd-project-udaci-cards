@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet, View, Image, StatusBar } from 'react-native'
 import { setLocalNotification } from './utils/helpers'
 //import { setDecks, getDecks, getDeck } from './utils/api'
 import { decks } from './utils/_DATA'
@@ -10,17 +9,17 @@ import NewDeckView from './components/NewDeckView'
 import Splash from './components/Splash'
 import { createBottomTabNavigator } from 'react-navigation'
 import { blue, black, darkgrey, lightgrey } from "./utils/colors";
+import { setDecks } from './actions/decks'
 
 
 
 
-const setDecks = () => ({
-  type: 'SET_DECKS'
-})
 
 
 const store = createStore((state = [], action) => {
   switch (action.type) {
+    case 'ADD_DECK':
+      return state = state.concat({ title: action.title, questions: [] })
     case 'SET_DECKS':
       return state = decks
     default:

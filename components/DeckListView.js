@@ -56,6 +56,8 @@ const styles = StyleSheet.create({
         borderRadius: Platform.OS === 'ios' ? 10 : 2,
         borderWidth: 1,
         borderColor: lightgrey,
+        shadowColor: black,
+
     },
     title: {
         fontSize: 40,
