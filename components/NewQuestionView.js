@@ -37,28 +37,30 @@ class NewQuestionView extends Component {
                     barStyle="light-content"
                 />
                 <ScrollView style={styles.view}>
-                    <Text style={styles.title}>Add new question</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={(question) => this.setState({ question })}
-                        value={this.state.question}
-                        maxLength={20}
-                        autoFocus={true}
-                        placeholder='Type your question'
-                        placeholderTextColor={lightgrey}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={(answer) => this.setState({ answer })}
-                        value={this.state.answer}
-                        maxLength={20}
-                        placeholder='Type your answer'
-                        placeholderTextColor={lightgrey}
-                    />
-                    <TouchableHighlight style={styles.button} onPress={this.handleQuestionSubmit} underlayColor={orange}>
-                        <Text style={styles.buttonTitle}>SUBMIT QUESTION</Text>
-                    </TouchableHighlight>
-                    {this.state.error !== '' && <Text style={styles.error}><MaterialIcons style={styles.icon} name="error" size={30} color={white} /> {this.state.error}</Text>}
+                    <KeyboardAvoidingView>
+                        <Text style={styles.title}>Add new question</Text>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={(question) => this.setState({ question })}
+                            value={this.state.question}
+                            maxLength={20}
+                            autoFocus={true}
+                            placeholder='Type your question'
+                            placeholderTextColor={lightgrey}
+                        />
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={(answer) => this.setState({ answer })}
+                            value={this.state.answer}
+                            maxLength={20}
+                            placeholder='Type your answer'
+                            placeholderTextColor={lightgrey}
+                        />
+                        <TouchableHighlight style={styles.button} onPress={this.handleQuestionSubmit} underlayColor={orange}>
+                            <Text style={styles.buttonTitle}>SUBMIT QUESTION</Text>
+                        </TouchableHighlight>
+                        {this.state.error !== '' && <Text style={styles.error}><MaterialIcons style={styles.icon} name="error" size={30} color={white} /> {this.state.error}</Text>}                    
+                    </KeyboardAvoidingView>
                 </ScrollView>
             </View>
         )
