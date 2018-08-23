@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, TextInput, TouchableHighlight } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, TextInput, TouchableHighlight, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 import { black, red, blue, lightgrey, white, orange } from '../utils/colors'
 import { addQuestion } from '../actions/decks'
