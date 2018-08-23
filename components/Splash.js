@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Image, StyleSheet, StatusBar } from 'react-native'
-import { black } from "../utils/colors";
+import { black } from '../utils/colors'
 
 export default class Splash extends Component {
   render() {

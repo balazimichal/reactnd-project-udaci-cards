@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { createStore } from 'redux'
 
 export default store = createStore((state = [], action) => {
     switch (action.type) {

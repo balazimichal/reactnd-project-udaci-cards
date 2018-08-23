@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { black, red, blue, lightgrey, white, orange } from '../utils/colors'
 import { addDeck } from '../actions/decks'
 import { saveDeckAPI } from '../utils/api'
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons'
 
 class NewDeckView extends Component {
 
