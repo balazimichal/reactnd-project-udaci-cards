@@ -1,11 +1,26 @@
 import React, { Component } from 'react'
-import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, TouchableOpacity } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, TouchableOpacity, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { black, darkgrey, blue, lightgrey } from '../utils/colors'
 
 class DeckListView extends Component {
+
+    state = {
+        opacity: new Animated.Value(0),
+        height: new Animated.Value(0)
+    }
+
+    componentDidMount() {
+        Animated.timing(this.state.opacity, {toValue: 1, duration: 1000}).start()
+        Animated.spring(this.state.height, {toValue: 150, speed:5}).start()
+    }
+
+
+
   render() {
       const { state } = this.props
+      const { opacity, height } = this.state
+
     return (
         <View style={styles.container}>
             <StatusBar
@@ -13,11 +28,14 @@ class DeckListView extends Component {
             />
             <ScrollView style={styles.view}>
                 {state.map((deck) => (
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('IndividualDeckView', { title: deck.title })} key={deck.title}>
-                        <View style={styles.deck}>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('IndividualDeckView', { title: deck.title })} 
+                        key={deck.title}
+                    >
+                        <Animated.View style={[styles.deck, {opacity, height }]}>
                             <Text style={styles.title}>{deck.title}</Text>
                             <Text style={styles.subtitle}>{deck.questions.length} card{deck.questions.length !== 1 && 's'}</Text>
-                        </View>
+                        </Animated.View>
                     </TouchableOpacity>
                 ))}
             </ScrollView>
@@ -47,6 +65,7 @@ const styles = StyleSheet.create({
     view: {
         padding: 30,
         paddingTop: 60,
+        width: width,
     },
     deck: {
         backgroundColor: darkgrey,
