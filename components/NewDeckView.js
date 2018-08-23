@@ -20,7 +20,7 @@ class NewDeckView extends Component {
         if (this.state.text !== '' && match.length === 0) {
             this.props.dispatch(addDeck(this.state.text))
             saveDeckAPI(this.state.text)
-            this.props.navigation.navigate('Decks')
+            this.props.navigation.navigate('IndividualDeckView', { title: this.state.text })
             this.setState({ text: '' })
         } else {
 
