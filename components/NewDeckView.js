@@ -118,11 +118,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         height: 50,
         lineHeight: 50,
-
+        marginBottom: 20,
     },
     icon: {
         lineHeight: 50,
-        bottom: -20,
+        marginTop: 20,
+        /* this is the one that does not work - I have tried marginBottom too, also with negative values */
     }
 
 });
