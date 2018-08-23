@@ -21,14 +21,16 @@ class NewDeckView extends Component {
         this.props.navigation.navigate('Decks')
         this.setState({ text: '' });
         } else {
-            let errorMsg = ''
-            if (this.state.text !== '') {
-                errorMsg = 'Title can not be empty'
+
+            if (this.state.text === '') {
+                const errorMsg = 'Title can not be empty'
+                this.setState({ error: errorMsg });
             }
             if (match.length !== 0) {
-                errorMsg = 'There is already such title in your deck'
+                const errorMsg = 'There is already such title in your deck'
+                this.setState({ error: errorMsg });
             }
-            this.setState({ error: errorMsg });
+
         }
     }
 
