@@ -3,7 +3,8 @@ import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, Te
 import { connect } from 'react-redux'
 import { black, red, blue, lightgrey, white, orange } from '../utils/colors'
 import { addQuestion } from '../actions/decks'
-import { MaterialIcons } from "@expo/vector-icons";
+import { addCardAPI } from '../utils/api'
+import { MaterialIcons } from '@expo/vector-icons'
 
 class NewQuestionView extends Component {
 
@@ -17,7 +18,8 @@ class NewQuestionView extends Component {
         if (this.state.question !== '' && this.state.answer !== '') {
 
             const questions = {question: this.state.question, answer: this.state.answer}
-            this.props.dispatch(addQuestion(this.props.navigation.state.params.title, questions));
+            this.props.dispatch(addQuestion(this.props.navigation.state.params.title, questions))
+            addCardAPI(this.props.navigation.state.params.title, questions)
             //console.log(this.props.navigation.state.params.deck.title, questions);
             this.setState({ question: '', answer: '' });
             this.props.navigation.navigate('IndividualDeckView')

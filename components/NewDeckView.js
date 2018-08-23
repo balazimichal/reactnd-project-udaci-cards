@@ -3,6 +3,7 @@ import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, Te
 import { connect } from 'react-redux'
 import { black, red, blue, lightgrey, white, orange } from '../utils/colors'
 import { addDeck } from '../actions/decks'
+import { saveDeckAPI } from '../utils/api'
 import { MaterialIcons } from "@expo/vector-icons";
 
 class NewDeckView extends Component {
@@ -17,9 +18,10 @@ class NewDeckView extends Component {
             return deck.title === this.state.text
         })
         if (this.state.text !== '' && match.length === 0) {
-        this.props.dispatch(addDeck(this.state.text))
-        this.props.navigation.navigate('Decks')
-        this.setState({ text: '' });
+            this.props.dispatch(addDeck(this.state.text))
+            saveDeckAPI(this.state.text)
+            this.props.navigation.navigate('Decks')
+            this.setState({ text: '' })
         } else {
 
             if (this.state.text === '') {

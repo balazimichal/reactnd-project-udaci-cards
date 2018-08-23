@@ -1,7 +1,7 @@
 import React from 'react'
 import { saveDecksAPI, getDecksAPI, removeDecksAPI, decks } from './utils/api'
 import { Provider } from 'react-redux'
-import store from './redux/deck'
+import store from './redux/decks'
 import { getDecks, setDecks } from './actions/decks'
 import DeckListView from './components/DeckListView'
 import NewDeckView from './components/NewDeckView'
@@ -27,12 +27,6 @@ export default class App extends React.Component {
 
   componentDidMount () {
 
-    /*
-    setTimeout(function () {
-      this.setState({ loaded: true });
-    }.bind(this), 2000)
-    */
-
     console.log("UdaciCards");
     setLocalNotification()
 
@@ -43,7 +37,7 @@ export default class App extends React.Component {
           store.dispatch(setDecks(data))
           console.log('setting the deck with data from async storage')
         } else {
-          saveDecksAPI()
+          saveDecksAPI(decks)
           store.dispatch(setDecks(decks))
           console.log("populating async storage with default data");
         }

@@ -42,14 +42,14 @@ export const decks = [
 
 
 
-export async function saveDecksAPI() {
+export async function saveDecksAPI(data) {
     try {
-        const stored = await AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
+        const stored = await AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
         if (stored) {
-            console.log('%c Data stored successfuly', 'font-size:14px;color:#02b3e4')
+            console.log('Data stored successfuly')
         }
     } catch (error) {
-        console.log('%c There was an issue saving the data.', 'font-size:14px;color:#02b3e4')
+        console.log('There was an issue saving the data.')
     }
 }
 
@@ -62,18 +62,46 @@ export async function getDecksAPI() {
             return JSON.parse(value);
         } 
     } catch (error) {
-        console.log("%c There was an issue retrieving the data.", "font-size:14px;color:#02b3e4");
+        console.log("There was an issue retrieving the data.");
     }
 }
+
+
+export async function saveDeckAPI(title) {
+    try {
+
+        const data = await AsyncStorage.getItem(DECKS_STORAGE_KEY)
+        const state = JSON.parse(data)
+        const newData = [...state, { title: title, questions: [] }];
+        await AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(newData));
+
+    } catch (error) {
+        console.log("There was an issue saving the title.");
+    }
+}
+
+
+export async function addCardAPI(title, card) {
+    try {
+        const data = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
+        const state = JSON.parse(data);
+        const newData = state.map(deck => (deck.title === title ? { ...deck, questions: deck.questions.concat(card) } : deck));
+        await AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(newData));
+
+    } catch (error) {
+        console.log("There was an issue saving the title.");
+    }
+}
+
 
 
 export async function removeDecksAPI() {
     try {
         const removed = await AsyncStorage.removeItem(DECKS_STORAGE_KEY);
         if (removed === null) {
-            console.log("%c Data were seccessfuly removed.", "font-size:14px;color:#02b3e4");
+            console.log("Data were seccessfuly removed.");
         }
     } catch (error) {
-        console.log("%c There was an issue removing the data.", "font-size:14px;color:#02b3e4");
+        console.log("There was an issue removing the data.");
     }
 }
