@@ -1,8 +1,8 @@
 import React from 'react'
-//import { setDecks, getDecks, getDeck } from './utils/api'
+import { saveDecksAPI, getDecksAPI, removeDecksAPI, decks } from './utils/api'
 import { Provider } from 'react-redux'
 import store from './redux/deck'
-import { getDecks } from './actions/decks'
+import { getDecks, setDecks } from './actions/decks'
 import DeckListView from './components/DeckListView'
 import NewDeckView from './components/NewDeckView'
 import IndividualDeckView from './components/IndividualDeckView'
@@ -27,22 +27,32 @@ export default class App extends React.Component {
 
   componentDidMount () {
 
-    console.log("%c UdaciCards", "font-size:14px;color:#02b3e4");
-    setLocalNotification()
-
-    store.dispatch(getDecks())
-
+    /*
     setTimeout(function () {
       this.setState({ loaded: true });
     }.bind(this), 2000)
-    
-    /*
-    const decks = getDecks()
-    console.log('decks: ', decks)
-
-    const res = getDeck('React')
-    console.log('id: ', res.title)
     */
+
+    console.log("UdaciCards");
+    setLocalNotification()
+
+
+    getDecksAPI()
+      .then((data) => {
+        if(data !== undefined) {
+          store.dispatch(setDecks(data))
+          console.log('setting the deck with data from async storage')
+        } else {
+          saveDecksAPI()
+          store.dispatch(setDecks(decks))
+          console.log("populating async storage with default data");
+        }
+
+        store.dispatch(getDecks())
+        this.setState({ loaded: true });
+      });
+
+    //removeDecksAPI()
 
   }
 

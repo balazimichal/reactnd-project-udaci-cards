@@ -1,4 +1,3 @@
-import { decks } from "../utils/_DATA";
 import { createStore } from "redux";
 
 export default store = createStore((state = [], action) => {
@@ -8,7 +7,9 @@ export default store = createStore((state = [], action) => {
         case 'ADD_DECK':
             return state = [...state, { title: action.title, questions: [] }]
         case 'GET_DECKS':
-            return state = decks
+            return state
+        case 'SET_DECKS':
+            return state = action.decks
         default:
             return state
     }

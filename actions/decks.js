@@ -1,3 +1,8 @@
+export const setDecks = (decks) => ({
+    type: 'SET_DECKS',
+    decks
+})
+
 export const getDecks = () => ({
     type: 'GET_DECKS'
 })
