@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { ScrollView, View, Text, StyleSheet, Dimensions, Platform, StatusBar, TouchableHighlight, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { black, blue, lightgrey, white, orange, red, green } from '../utils/colors'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class QuizView extends Component {
 
@@ -79,6 +80,8 @@ class QuizView extends Component {
 
     componentDidMount() {
 
+        clearLocalNotification().then(setLocalNotification)
+
         const deck = this.props.state.filter((deck) => { return deck.title === this.props.navigation.state.params.title })
 
         const questions = deck.map((question) => {
@@ -125,7 +128,7 @@ class QuizView extends Component {
                 barStyle="light-content"
             />
             <ScrollView style={styles.view}>
-                <Text style={styles.helper}>total: {this.state.questionsIndex + 1}/{this.state.totalQuestions}</Text>
+                <Text style={styles.helper}>{this.state.questionsIndex + 1}/{this.state.totalQuestions}</Text>
                 <Text>{this.state.deck}</Text>
                 <Text style={styles.question}>{this.state.question}</Text>
                 {this.state.showAnswer === true && 

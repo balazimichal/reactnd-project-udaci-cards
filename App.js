@@ -2,7 +2,7 @@ import React from 'react'
 //import { setDecks, getDecks, getDeck } from './utils/api'
 import { Provider } from 'react-redux'
 import store from './redux/deck'
-import { getDecks } from './actions/decks';
+import { getDecks } from './actions/decks'
 import DeckListView from './components/DeckListView'
 import NewDeckView from './components/NewDeckView'
 import IndividualDeckView from './components/IndividualDeckView'
@@ -11,8 +11,8 @@ import QuizView from './components/QuizView'
 import Splash from './components/Splash'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import { blue, specialgrey, darkgrey, lightgrey } from './utils/colors'
-import { setLocalNotification } from "./utils/helpers";
-import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
+import { setLocalNotification } from './utils/helpers'
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons'
 
 
 

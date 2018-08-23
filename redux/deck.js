@@ -14,7 +14,8 @@ export default store = createStore((state = [], action) => {
     }
 })
 
-
+/*
 store.subscribe(() => {
     console.log(store.getState())
 })
+*/

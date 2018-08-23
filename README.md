@@ -26,4 +26,4 @@ To run this project follow this steps:
 - Project must pass following rubic: https://review.udacity.com/#!/rubrics/1021/view
 
 ## Testing
-Both iOS and Android have been tested and styles were slightly adjusted to represent better given platform.
+App was tested on Both iOS and Android emulators and on Nexus5 device. Styles were slightly adjusted to represent better each given platform.
