@@ -46,7 +46,6 @@ export default class App extends React.Component {
         this.setState({ loaded: true });
       });
 
-    //removeDecksAPI()
 
   }
 
