@@ -1,5 +1,5 @@
 import React from 'react'
-import { saveDecksAPI, getDecksAPI, removeDecksAPI, decks } from './utils/api'
+import { saveDecksAPI, getDecksAPI, decks } from './utils/api'
 import { Provider } from 'react-redux'
 import store from './redux/decks'
 import { getDecks, setDecks } from './actions/decks'

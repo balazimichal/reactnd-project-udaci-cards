@@ -34,7 +34,7 @@ class DeckListView extends Component {
                     >
                         <Animated.View style={[styles.deck, {opacity, height }]}>
                             <Text style={styles.title}>{deck.title}</Text>
-                            <Text style={styles.subtitle}>{deck.questions.length} card{deck.questions.length !== 1 && 's'}</Text>
+                            <Text style={styles.subtitle}>{deck.questions.length} card{deck.questions.length > 1 && 's'}</Text>
                         </Animated.View>
                     </TouchableOpacity>
                 ))}
