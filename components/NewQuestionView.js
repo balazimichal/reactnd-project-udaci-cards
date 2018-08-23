@@ -15,22 +15,24 @@ class NewQuestionView extends Component {
     }
 
     handleQuestionSubmit = () => {
-        if (this.state.question !== '' && this.state.answer !== '') {
+        const { question, answer, error } = this.state
+        if (question !== '' && answer !== '') {
 
-            const questions = {question: this.state.question, answer: this.state.answer}
+            const questions = {question: question, answer: answer}
             this.props.dispatch(addQuestion(this.props.navigation.state.params.title, questions))
             addCardAPI(this.props.navigation.state.params.title, questions)
             //console.log(this.props.navigation.state.params.deck.title, questions);
             this.setState({ question: '', answer: '' });
             this.props.navigation.navigate('IndividualDeckView')
         } else {
-            if (this.state.question === '' && this.state.answer === '') {
+            if (question === '' && answer === '') {
                 this.setState({ error: 'Question and Answer can not be empty' });
             }
         }
     }
 
     render() {
+        const { question, answer, error } = this.state
         return (
             <View style={styles.container}>
                 <StatusBar
@@ -42,7 +44,7 @@ class NewQuestionView extends Component {
                         <TextInput
                             style={styles.input}
                             onChangeText={(question) => this.setState({ question })}
-                            value={this.state.question}
+                            value={question}
                             maxLength={20}
                             autoFocus={true}
                             placeholder='Type your question'
@@ -51,7 +53,7 @@ class NewQuestionView extends Component {
                         <TextInput
                             style={styles.input}
                             onChangeText={(answer) => this.setState({ answer })}
-                            value={this.state.answer}
+                            value={answer}
                             maxLength={20}
                             placeholder='Type your answer'
                             placeholderTextColor={lightgrey}
@@ -59,7 +61,7 @@ class NewQuestionView extends Component {
                         <TouchableHighlight style={styles.button} onPress={this.handleQuestionSubmit} underlayColor={orange}>
                             <Text style={styles.buttonTitle}>SUBMIT QUESTION</Text>
                         </TouchableHighlight>
-                        {this.state.error !== '' && <Text style={styles.error}><MaterialIcons style={styles.icon} name="error" size={30} color={white} /> {this.state.error}</Text>}                    
+                        {error !== '' && <Text style={styles.error}><MaterialIcons style={styles.icon} name="error" size={30} color={white} /> {error}</Text>}                    
                     </KeyboardAvoidingView>
                 </ScrollView>
             </View>
