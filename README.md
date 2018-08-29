@@ -40,7 +40,10 @@ The setup is kind of complicated, but we'll get through it together.
 1) Install a recent version of the Java SE Development Kit(JDK).
 
 2) Install Android Studio Choose a "Custom" setup when prompted. Make sure the boxes next to all of the following are checked:
-Android SDK, Android SDK Platform, Performance (Intel ® HAXM), Android Virtual Device
+- Android SDK
+- Android SDK Platform
+- Performance (Intel ® HAXM)
+- Android Virtual Device
 
 3) Click "Next".
 
