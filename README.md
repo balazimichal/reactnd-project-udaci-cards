@@ -115,7 +115,27 @@ If you see any error messages that prompt you to install additional software, pl
 
 8) Click the play button.
 
+#### Directions for Setting up Genymotion
 
+1) Download and install Genymotion(it is free for personal use).
+
+2)Set up an Android emulator by selecting the type of phone you want to emulate and wait for the setup to complete.
+
+3) Open Genymotion and navigate to "Settings" and then "ADB". Select "Use custom Android SDK tools," and update it with your Android SDK location (e.g. /Users/yourName/Library/Android/sdk).
+
+4) Restart GenyMotion.
+
+5) Got to "Settings". Go to "ADB" and make sure there is a checkmark next to "Android SDK successfully found".
+
+6) Run npm install -g exp to install exp globally.
+
+7) Run exp path. This will save your PATH environment variable so that XDE knows where to find your Android tools.
+
+8) Close Android Studio if you still have it open. Check to make sure that Android Studio is no longer running.
+
+9) Start the GenyMotion Emulator by clicking "Start".
+
+10) The majority of these instructions are from the Genymotion documentation.
 
 
 ## Requirements for the project
