@@ -4,12 +4,32 @@ This is the final assessment project for Udacity's React Native course. This mob
 
 ## Installation instructions
 
-To run this project follow this steps:
+#### To run this project follow this steps:
 
 - Clone the project with ```git clone https://github.com/balazimichal/reactnd-project-udaci-cards.git```
 - CD into the project and install the dependencies with ```yarn install``` or ```npm i```
 - Run the app with ```yarn start``` or ```npm start```
 - Fastest way to deploy and test the app on your device is to use Expo - https://expo.io/tools. Install expo app on your iOS or android device and follow the instructions. For android all you need is to press letter 'q' in your terminal which will display the QR code. You can scan this code via Expo QR reader and your app will be available on your device instantly.
+
+#### To install iPhone simulator follow this steps:
+
+iOS apps can only be developed on a Mac unless you have a virtual machine set up on your machine. To set up the iPhone simulator on your Mac, follow these instructions:
+
+1) Go to the App Store.
+
+2) Download Xcode.
+
+3) Follow the installation instructions.
+
+4) Open Xcode and install additional software if prompted to do so.
+
+If you already have Xcode installed, please make sure that you update it. Then, open it to make sure no further updates are needed. Most problems with setting up your React Native development environment can be solved this way.
+
+5) Open Xcode and go to "Preferences."
+
+6) Go to the "Locations" panel and select the most recent version in the "Command Line Tools" drop-down list.
+
+7) That’s it!
 
 
 ## Requirements for the project
