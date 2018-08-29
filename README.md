@@ -9,6 +9,8 @@ To run this project follow this steps:
 - Clone the project with ```git clone https://github.com/balazimichal/reactnd-project-udaci-cards.git```
 - CD into the project and install the dependencies with ```yarn install``` or ```npm i```
 - Run the app with ```yarn start``` or ```npm start```
+- Fastest way to deploy and test the app on your device is to use Expo - https://expo.io/tools. Install expo app on your iOS or android device and follow the instructions. For android all you need is to press letter 'q' in your terminal which will display the QR code. You can scan this code via Expo QR reader and your app will be available on your device instantly.
+
 
 ## Requirements for the project
 
