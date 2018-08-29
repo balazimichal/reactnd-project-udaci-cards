@@ -31,6 +31,89 @@ If you already have Xcode installed, please make sure that you update it. Then, 
 
 7) That’s it!
 
+#### To install Android Simulator follow this steps:
+
+The setup is kind of complicated, but we'll get through it together.
+
+##### Part 1
+
+1) Install a recent version of the Java SE Development Kit(JDK).
+
+2) Install Android Studio Choose a "Custom" setup when prompted. Make sure the boxes next to all of the following are checked:
+Android SDK, Android SDK Platform, Performance (Intel ® HAXM), Android Virtual Device
+
+3) Click "Next".
+
+4) Launch Android Studio.
+
+5) Click on "Configure" and select "SDK Manager".
+
+6) Select the "SDK Platforms" tab.
+
+7) Put a checkmark next to "Android API 28", "Android 8.0", "Android 6.0 (Marshmallow)," "Android 7.0," and "Android 7.1.1."
+
+8) Go to the "SDK Tools" tab.
+
+9) Put checkmarks next to :
+- Android SDK Build-Tools
+- Android SDK Platform-Tools
+- Android SDK Tools
+- Android Emulator
+- Intel x86 Emulator Accelerator (HAXM installer)
+- Under the Support Repository, put a checkmark at "Android Support Repository"
+
+10) Click "OK".
+
+11) Follow the on-screen directions to install the requested components.
+
+12) If you are on a Windows machine, please install the Intel x86 Emulator Accelerator through the Android SDK Manager, if prompted.
+
+13) If you are on a Windows or Linux machine, please make sure to enable Virtualization Technology in your BIOS settings.
+
+14) If you are on a Windows machine:
+
+a) Open Android Studio. Go to "File" and then click "Project Structure." Make sure this box is checked: "Use embedded JDK(recommended)." Please copy the Android SDK location (e.g. C:\User\userName\AppData\Local\Android\Sdk); we'll be using it shortly.
+
+b) Open the System Control Panel. Click on "Advanced system settings." Click on "Environment Variables." Create a new variable ANDROID_HOME and set it to the Android SDK location you copied before.
+
+Create a new variable JAVA_HOME and set it to the installation path for the Java Development Kit (e.g. C:\Program Files\Java\jdk1.8.0_171).
+
+15) If you are on a macOS or Linux:
+
+a) Open Android Studio. Click on "Configure" and select "SDK Manager" again. Go to Appearance & Behavior -> System Settings -> Android SDK.
+
+b) Look at the path that’s filled in for the "Android SDK Location" section. It should be something like: /Users/yourName/Library/Android/sdk. If you are on macOS or Linux, add the Android SDK location to your PATH using ~/.bash_profile or ~/.bash_rc (e.g. echo 'export PATH=$PATH:~/Library/Android/sdk/'>>~/.bash_profile).
+
+c) On macOS, you will also need to add platform-tools to your ~/.bash_profile or ~/.bash_rc (e.g. echo 'export PATH=$PATH:~/Library/Android/sdk/platform-tools' >>~/.bash_profile, source ~/.bash_profile).
+
+d) Make sure that you can run adb from your terminal.
+
+###### Part 2
+
+You have a choice of either using the Android Studio Emulator or Genymotion as your simulator. You don't have to install both.
+
+Directions for Setting up the Android Studio Emulator
+
+1) Open Android Studio.
+
+2) Click "Start a new Android Studio project". You don't need to change any of the settings; just click through to "Finish". Click "Finish".
+
+3) Once a new project is created, look at the messages inside the Gradle Console.
+
+If you see any error messages that prompt you to install additional software, please install it.
+
+4) Select "Tools" --> "AVD Manager". Ensure that there's a checkmark next to "Enable ADB Integration".
+
+5) Click "Create Virtual Device".
+
+6) Select the system image you want and click "Download".
+
+7) Once the download completes, click "Next" and "Finish".
+
+8) Click the play button.
+
+
+
 
 ## Requirements for the project
 
