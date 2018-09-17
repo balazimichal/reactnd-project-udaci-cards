@@ -162,14 +162,14 @@ App was tested on Both iOS and Android emulators and on Nexus5 device. Styles we
 
 ## Screen Capture
 
-![ucacity cards app image](/screencapture-adddeck.jpeg)
+![ucacity cards app image](/img/screencapture-adddeck.jpeg)
 
-![ucacity cards app image](/screencapture-addquestion.jpeg)
+![ucacity cards app image](/img/screencapture-addquestion.jpeg)
 
-![ucacity cards app image](/screencapture-deck.jpeg)
+![ucacity cards app image](/img/screencapture-deck.jpeg)
 
-![ucacity cards app image](/screencapture-main.jpeg)
+![ucacity cards app image](/img/screencapture-main.jpeg)
 
-![ucacity cards app image](/screencapture-quiz.jpeg)
+![ucacity cards app image](/img/screencapture-quiz.jpeg)
 
-![ucacity cards app image](/screencapture-score.jpeg)
+![ucacity cards app image](/img/screencapture-score.jpeg)
